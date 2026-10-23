@@ -9,6 +9,8 @@
   <meta property="og:description" content="Artist collective based in Tokyo, since 2018.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://stoneage.tokyo/">
+  <meta property="og:image" content="https://stoneage.tokyo/assets/img/ogp.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
@@ -27,8 +29,10 @@
   </header>
 
   <div class="hero">
-    <!-- トップ画像：assets/img/hero.jpg を置いたら、次の行のコメントを外す -->
-    <!-- <img class="hero-bg" src="assets/img/hero.jpg" alt=""> -->
+    <picture>
+      <source media="(max-width: 700px)" srcset="assets/img/hero-portrait.webp">
+      <img class="hero-bg" src="assets/img/hero.webp" alt="" width="2560" height="1600">
+    </picture>
     <div class="hero-inner">
       <h1>Stone Age</h1>
       <p class="since">since 2018</p>
@@ -62,6 +66,34 @@
         <div class="next">次回の開催は決まり次第、ここと Instagram でお知らせします。</div>
 
         <h3 style="margin-top:48px">Archive</h3>
+
+        <article class="event">
+          <p class="date">2026.01.30</p>
+          <div>
+            <h3>Stone age</h3>
+            <p class="venue">@ forestlimit　19:00–23:40　ADV ¥2,000 / DOOR ¥2,500</p>
+            <ul class="lineup">
+              <li><b>Brand launch</b>PROTOTYPE Laboratories（exhibition）</li>
+              <li><b>Street photo</b>Tadashi Onishi（Rozou Project / Stone age）projection</li>
+              <li><b>Live</b>Phazmidi / JINGLE GYM feat. EMB / yuwatanabe (0bpm) / EMB feat. 泡沫 for PROTOTYPE Laboratories</li>
+              <li><b>DJ</b>小林径 / tomo takashima / soich1 (minimal set) / Rin (minimal set)</li>
+              <li><b>Exhibition</b>khao / eVato aRata</li>
+              <li><b>Scenting</b>Branch incense</li>
+            </ul>
+            <a href="assets/img/flyer-20260130.webp" target="_blank" rel="noopener"><img class="flyer" src="assets/img/flyer-20260130.webp" alt="2026.01.30 Stone age フライヤー" width="2216" height="2954" loading="lazy"></a>
+          </div>
+        </article>
+
+        <article class="event">
+          <p class="date">2024.11.06</p>
+          <div>
+            <h3>Stoneage Experimental Session</h3>
+            <div class="video">
+              <iframe src="https://www.youtube.com/embed/8YRYcSE9G6M" title="Stoneage Experimental Session 2024.11.6" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <p class="meta">Video: Tadashi Onishi</p>
+          </div>
+        </article>
 
         <article class="event">
           <p class="date">2025.01.08</p>
@@ -117,12 +149,14 @@
         <p>写真家・大西正の路上写真からDJ Mixを紡ぎ出していく「Streetphoto × DJ」のセッション。DJに一枚の写真を選んでもらい、そこから得た着想で DJ Mix を創ります。</p>
         <div class="grid-2" style="margin-top:24px">
           <a class="card" href="interview/dj-saboten.html" style="text-decoration:none">
+            <img class="card-img" src="assets/img/dj-saboten.webp" alt="DJ SABOTEN" width="1656" height="1656" loading="lazy">
             <p class="meta">2025.04.25</p>
             <h3>DJ SABOTEN</h3>
             <p>Q.1 不特定多数が交錯する路上にあえて意識を向けると、自分もその不特定多数の群衆の一部となります。その中でどうありたいと思いますか？…</p>
             <span class="more">Read More →</span>
           </a>
           <a class="card" href="interview/" style="text-decoration:none">
+            <img class="card-img" src="assets/img/rozou.webp" alt="路像：大西正の路上写真" width="1770" height="1182" loading="lazy">
             <p class="meta">About</p>
             <h3>「路像」について</h3>
             <p>公共空間である路上と、創作された二次的公共空間であるダンスフロア。その接点に生まれる創造的可能性に光を当てる企画です。</p>
@@ -137,10 +171,7 @@
         <h2 class="section-title">Release</h2>
         <p class="section-sub">Stone Age Tokyo 1st compilation album / ZINE「時代」</p>
         <div class="grid-2">
-          <div class="release-cover">
-            <!-- ジャケット画像：assets/img/jidai.jpg を置いて差し替え -->
-            時代 / Jidai
-          </div>
+          <img class="release-cover" src="assets/img/jidai.webp" alt="Stone Age Tokyo 1st compilation album / ZINE「時代」ジャケット" width="2400" height="2400" loading="lazy">
           <div>
             <p class="lead">東京、路上、交差する雑音、呼吸。</p>
             <p>メンバーの路上写真家・大西正が撮りためた、渋谷・頭BAR のレギュラーイベントの記録写真と、同時代の東京の路上写真をまとめた ZINE に、コンピレーション・アルバムが付いたリリース。</p>
@@ -166,6 +197,7 @@
   <footer class="site-footer">
     <div class="links">
       <a href="https://www.instagram.com/stone.age.tokyo/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://soundcloud.com/stoneage-tokyo" target="_blank" rel="noopener">SoundCloud</a>
       <a href="https://stoneagetokyo.bandcamp.com/" target="_blank" rel="noopener">Bandcamp</a>
       <a href="mailto:stone.age.since2018@gmail.com">Mail</a>
     </div>
