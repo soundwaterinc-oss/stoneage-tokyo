@@ -1,19 +1,19 @@
-/* 参考：抑えたグレーの階調、グロテスク体の太字見出し、左の固定サイドバー、斜めに切ったパネル、
-   日付カードのグリッド。ロゴとトップの題字だけブラックレターを残す */
+/* 参考：明るい紙色の背景、黒のアウトラインのピル型ナビ、大きなセリフ体の見出しとリード文、
+   グロテスク体のタイトル、紫のアクセント、大きな写真のカード、黒いフッター。
+   ロゴはブラックレターを残す */
 :root {
-  --bg: #141414;
-  --shape: #1c1c1c;
-  --panel: #262626;
-  --panel-2: #2f2f2f;
-  --fg: #a7a7a7;
-  --fg-strong: #d2d2d2;
-  --fg-dim: #6e6e6e;
-  --line: #303030;
-  --side: 220px;
-  --max: 1100px;
-  --gutter: 20px;
-  --font: "Inter", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-  --font-display: "UnifrakturMaguntia", "Old English Text MT", serif;
+  --bg: #f6f6f4;
+  --fg: #131314;
+  --fg-dim: #6b6b6b;
+  --line: #131314;
+  --soft: #e6e6e2;
+  --accent: #7a5cff;
+  --ink: #0b0b0c;
+  --max: 1360px;
+  --gutter: clamp(16px, 2.6vw, 36px);
+  --sans: "Inter Tight", "Inter", "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+  --serif: "Instrument Serif", "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  --black: "UnifrakturMaguntia", "Old English Text MT", serif;
 }
 
 * { box-sizing: border-box; }
@@ -22,167 +22,162 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: var(--font);
-  font-size: 15px;
-  line-height: 1.6;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
-/* 背景の斜めの面 */
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background: var(--shape);
-  clip-path: polygon(0 14%, 46% 2%, 94% 6%, 100% 30%, 98% 100%, 0 100%);
-}
 a { color: inherit; text-decoration: none; }
-a:hover { color: var(--fg-strong); }
-p a, .lineup a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--fg-dim); }
+p a, .lineup a { text-decoration: underline; text-underline-offset: 3px; }
 img { max-width: 100%; height: auto; display: block; }
-b, strong { font-weight: 600; color: var(--fg-strong); }
+b, strong { font-weight: 600; }
 
-/* ヘッダー（スマホは上部、PC は左の固定サイドバー） */
+/* ヘッダー：ロゴ＋ピル型ナビ */
 .site-header {
-  position: sticky; top: 0; z-index: 10;
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px;
-  padding: 14px var(--gutter);
-  background: rgba(20, 20, 20, .92);
-  backdrop-filter: blur(6px);
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 12px 20px; flex-wrap: wrap;
+  padding: 12px var(--gutter);
+  background: rgba(246, 246, 244, .94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--soft);
 }
-.logo { font-family: var(--font-display); font-size: 28px; line-height: 1; white-space: nowrap; color: var(--fg-strong); }
-.nav { display: flex; gap: 14px; flex-wrap: wrap; font-weight: 600; font-size: 14px; color: var(--fg-strong); }
+.logo { font-family: var(--black); font-size: 34px; line-height: 1; white-space: nowrap; margin-right: 8px; }
+.logo::after { content: "Tokyo"; font-family: var(--sans); font-size: 15px; letter-spacing: .02em; margin-left: 6px; vertical-align: 6px; }
+.nav { display: flex; gap: 8px; flex-wrap: wrap; }
+.nav a {
+  font-size: 15px; padding: 7px 16px; border: 1px solid var(--line); border-radius: 999px;
+  transition: background .15s, color .15s;
+}
+.nav a:hover, .nav a.is-active { background: var(--fg); color: var(--bg); }
 .side-info { display: none; }
-
-@media (min-width: 960px) {
-  body { padding-left: var(--side); }
-  .site-header {
-    position: fixed; left: 0; top: 0; bottom: 0; width: var(--side);
-    flex-direction: column; align-items: flex-start; justify-content: flex-start; flex-wrap: nowrap;
-    padding: 96px 24px 32px 28px; gap: 20px;
-    background: var(--panel);
-    clip-path: polygon(0 7%, 100% 0, 100% 100%, 0 100%);
-    backdrop-filter: none;
-  }
-  .logo { font-size: 34px; }
-  .nav { flex-direction: column; gap: 0; font-size: 15px; line-height: 1.45; }
-  .side-info { display: block; margin-top: auto; font-size: 12px; line-height: 1.5; }
-  .side-info dt { color: var(--fg-dim); margin-top: 14px; }
-  .side-info dd { margin: 0; font-weight: 600; color: var(--fg-strong); }
+@media (max-width: 640px) {
+  .site-header { gap: 8px; padding-bottom: 10px; }
+  .logo { font-size: 28px; }
+  .nav { gap: 6px; flex-wrap: nowrap; overflow-x: auto; width: calc(100% + var(--gutter)); margin-right: calc(-1 * var(--gutter)); padding-right: var(--gutter); scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { font-size: 13px; padding: 5px 12px; white-space: nowrap; }
 }
 
-/* トップ：斜めに切った画像パネル */
-.hero {
-  position: relative;
-  min-height: 62vh;
-  margin: 24px var(--gutter) 0;
-  display: grid; place-items: center; text-align: center;
-  overflow: hidden;
-  background: var(--panel);
-  clip-path: polygon(0 4%, 100% 0, 100% 90%, 0 100%);
-}
-.hero img.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05) brightness(.8); }
-.hero-inner { position: relative; padding: 0 var(--gutter); }
-.hero h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(56px, 11vw, 120px); line-height: 1; margin: 0; color: #e6e6e6; text-shadow: 0 2px 24px rgba(0,0,0,.8); }
-.hero .since { font-family: var(--font-display); font-size: clamp(26px, 4.5vw, 46px); margin: 8px 0 0; color: #e6e6e6; text-shadow: 0 2px 16px rgba(0,0,0,.8); }
-.hero .tagline { margin: 18px 0 0; color: var(--fg-strong); font-size: 14px; font-weight: 600; text-shadow: 0 1px 8px rgba(0,0,0,.9); }
+/* トップ画像（全幅） */
+.hero { position: relative; height: min(78vh, 760px); background: var(--ink); overflow: hidden; }
+@media (max-width: 640px) { .hero { height: 52vh; } }
+.hero img.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.08); }
 
-/* セクション */
-main section { padding: 56px var(--gutter) 24px; }
+/* イントロ：大きなセリフ体 */
+.intro { padding: clamp(40px, 7vw, 96px) var(--gutter) 24px; max-width: var(--max); margin: 0 auto; }
+.kicker { font-family: var(--serif); font-size: 19px; color: var(--accent); margin: 0 0 8px; }
+.display { font-family: var(--serif); font-weight: 400; font-size: clamp(64px, 11vw, 170px); line-height: .9; letter-spacing: -.02em; margin: 0; }
+.display .bl { font-family: var(--black); font-size: .82em; letter-spacing: 0; }
+.intro-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-top: 18px; }
+.intro-meta { font-size: clamp(18px, 2vw, 26px); }
+.statement { font-family: var(--serif); font-size: clamp(28px, 3.6vw, 54px); line-height: 1.08; margin: 28px 0 0; max-width: 22em; }
+.statement .ja { display: block; font-size: .82em; line-height: 1.35; margin-bottom: 10px; }
+
+/* セクション共通 */
+main section { padding: clamp(48px, 6vw, 88px) var(--gutter) 24px; }
 .wrap { max-width: var(--max); margin: 0 auto; }
-.section-title { font-family: var(--font); font-weight: 600; font-size: 15px; color: var(--fg-strong); margin: 0 0 4px; line-height: 1.3; }
-.section-sub { color: var(--fg-dim); font-size: 13px; margin: 0 0 20px; }
-main h3 { font-weight: 600; color: var(--fg-strong); }
-#event > .wrap > h3 { font-size: 15px; margin: 32px 0 12px; }
-.lead { font-size: 22px; font-weight: 600; line-height: 1.35; color: var(--fg-strong); }
-.en { color: var(--fg); font-size: 14px; }
-.meta { color: var(--fg-dim); font-size: 13px; }
-.grid-2 { display: grid; gap: 24px; grid-template-columns: 1fr; }
-@media (min-width: 760px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
-
-/* カード */
-.card { display: block; background: var(--panel); padding: 16px 18px; color: var(--fg); }
-.card:hover { background: var(--panel-2); color: var(--fg); }
-.card h3 { margin: 0 0 6px; font-size: 22px; line-height: 1.15; }
-.more { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--fg-strong); }
-.card-img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; margin-bottom: 14px; filter: grayscale(1); }
-
-/* イベント：日付カードのグリッド */
-.event-grid { display: grid; gap: 2px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); margin-top: 8px; }
-.event { background: var(--panel); padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 4px; }
-.event .date { margin: 0; font-weight: 600; color: var(--fg-strong); font-size: 14px; line-height: 1.3; }
-.event .dow { display: block; font-weight: 400; color: var(--fg); }
-.event h3 { margin: 4px 0 2px; font-size: 22px; line-height: 1.12; letter-spacing: -.01em; }
-.event .venue { margin: 0 0 6px; color: var(--fg); font-size: 13px; }
-.event > div > p { font-size: 13px; }
-.lineup { margin: 6px 0 0; padding: 0; list-style: none; font-size: 12.5px; line-height: 1.5; }
-.lineup li { margin: 3px 0; }
-.lineup b { display: block; color: var(--fg-dim); font-weight: 400; font-size: 11.5px; }
-.next { background: var(--panel); padding: 18px; color: var(--fg); }
-.event.next-event { grid-column: 1 / -1; padding: 22px 24px 26px; }
-.event.next-event h3 { font-size: clamp(28px, 4vw, 44px); }
-.event.next-event .lineup { columns: 2 260px; column-gap: 32px; font-size: 13.5px; }
-.event.next-event .lineup li { break-inside: avoid; }
-.timetable { margin-top: 14px; font-size: 13px; }
-.timetable summary { cursor: pointer; font-weight: 600; color: var(--fg-strong); }
-.timetable .grid-2 { margin-top: 10px; gap: 12px; }
-.timetable .lineup { columns: auto; }
-.flyer { width: 100%; margin-top: 12px; }
-.ev-img { display: block; margin: 2px 0 12px; background: #000; }
-.ev-img img { width: 100%; height: auto; filter: grayscale(.25) brightness(.92); transition: filter .2s; }
-.ev-img:hover img { filter: none; }
-.event.next-event { display: grid; gap: 24px; }
-@media (min-width: 900px) {
-  .event.next-event > div { display: grid; grid-template-columns: minmax(240px, 34%) 1fr; column-gap: 28px; align-items: start; }
-  .event.next-event > div > .ev-img { grid-row: 1 / span 20; margin: 0; }
+.section-title { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 7vw, 104px); line-height: .95; letter-spacing: -.015em; margin: 0 0 6px; }
+.section-sub { font-size: 15px; color: var(--fg-dim); margin: 0 0 32px; }
+.lead { font-family: var(--serif); font-size: clamp(26px, 3vw, 42px); line-height: 1.15; margin: 0 0 18px; }
+.en { color: var(--fg-dim); }
+.meta { color: var(--fg-dim); font-size: 14px; }
+.grid-2 { display: grid; gap: 28px 40px; grid-template-columns: 1fr; }
+@media (min-width: 820px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+.pill, .more, .button, .timetable summary {
+  display: inline-block; font-family: var(--sans); font-size: 14px; padding: 6px 16px;
+  border: 1px solid var(--line); border-radius: 999px; cursor: pointer; background: transparent; color: var(--fg);
 }
+.more:hover, .button:hover, .timetable summary:hover { background: var(--fg); color: var(--bg); }
 
-/* Photos */
-.gallery { columns: 3 260px; column-gap: 2px; }
-.gallery figure { break-inside: avoid; margin: 0 0 2px; background: var(--panel); }
-.gallery img { width: 100%; height: auto; filter: grayscale(1) contrast(1.05); transition: filter .25s; }
-.gallery a:hover img { filter: grayscale(0); }
-.gallery figcaption { padding: 8px 12px 12px; font-size: 12.5px; color: var(--fg); line-height: 1.45; }
-.gallery figcaption span { display: block; color: var(--fg-dim); font-size: 11.5px; margin-top: 2px; }
-.video { position: relative; aspect-ratio: 16 / 9; margin: 8px 0; }
+/* イベント */
+#event > .wrap > h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); margin: 48px 0 18px; }
+.event-grid { display: grid; gap: 48px 32px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.event { display: flex; flex-direction: column; }
+.ev-img { display: block; margin: 0 0 16px; background: var(--ink); overflow: hidden; }
+.ev-img img { width: 100%; height: auto; transition: transform .4s ease; }
+.ev-img:hover img { transform: scale(1.02); }
+.event .date { font-family: var(--serif); color: var(--accent); font-size: 19px; margin: 0 0 4px; order: -1; }
+.event > .date { margin-bottom: 10px; }
+.event .dow { margin-right: 8px; }
+.event h3 { font-weight: 400; font-size: clamp(24px, 2.3vw, 32px); line-height: 1.05; letter-spacing: -.01em; margin: 2px 0 8px; }
+.event .venue { margin: 0 0 10px; font-size: 15px; }
+.event > div > p { font-size: 15px; }
+.lineup { margin: 8px 0 0; padding: 0; list-style: none; font-size: 14px; line-height: 1.45; }
+.lineup li { margin: 0 0 6px; }
+.lineup b { display: block; font-family: var(--serif); font-weight: 400; font-size: 16px; color: var(--fg-dim); }
+.timetable { margin-top: 16px; }
+.timetable summary { list-style: none; }
+.timetable summary::-webkit-details-marker { display: none; }
+.timetable .grid-2 { margin-top: 14px; gap: 12px 28px; }
+.flyer { width: 100%; }
+.video { position: relative; aspect-ratio: 16 / 9; margin: 0 0 12px; background: var(--ink); }
 .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-/* 年ごとの見出し・開閉 */
-.year-title { font-family: var(--font); font-weight: 600; font-size: 26px; color: var(--fg-dim); margin: 36px 0 4px; display: inline-block; }
-details.year { margin-top: 20px; }
-details.year > summary { cursor: pointer; list-style: none; }
-details.year > summary::-webkit-details-marker { display: none; }
-details.year > summary .year-title { margin: 8px 0 4px; }
-details.year > summary::after { content: "＋"; margin-left: 12px; font-size: 18px; color: var(--fg-dim); }
-details.year[open] > summary::after { content: "－"; }
-details.year > summary:hover .year-title { color: var(--fg-strong); }
-
-/* インタビュー */
-.vol-tabs { display: flex; gap: 2px; flex-wrap: wrap; margin-top: 16px; }
-.vol-tabs button, .vol-nav a {
-  font: inherit; font-size: 13px; font-weight: 600;
-  padding: 8px 16px; border: 0; background: var(--panel); color: var(--fg);
-  cursor: pointer;
+/* 次回イベント：大きく */
+.event.next-event { grid-column: 1 / -1; }
+@media (min-width: 900px) {
+  .event.next-event > div { display: grid; grid-template-columns: minmax(300px, 40%) 1fr; column-gap: 48px; align-items: start; }
+  .event.next-event > div > .ev-img { grid-row: 1 / span 20; margin: 0; }
 }
-.vol-tabs button:hover, .vol-nav a:hover { background: var(--panel-2); color: var(--fg-strong); }
-.vol-tabs button[aria-selected="true"], .vol-nav a[aria-current="page"] { background: var(--fg-strong); color: var(--bg); }
-.vol-nav { display: flex; gap: 2px; flex-wrap: wrap; margin: 0 0 24px; }
+.event.next-event h3 { font-family: var(--serif); font-size: clamp(48px, 6.5vw, 104px); line-height: .92; letter-spacing: -.02em; }
+.event.next-event > div > p:not(.venue) { font-family: var(--serif); font-size: clamp(20px, 2vw, 28px); line-height: 1.2; }
+.event.next-event .lineup { columns: 2 240px; column-gap: 32px; font-size: 15px; }
+.event.next-event .lineup li { break-inside: avoid; }
+.event.next-event .timetable .lineup { columns: auto; }
+
+/* 年ごとの開閉 */
+.year-title { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 5vw, 72px); line-height: 1; margin: 56px 0 24px; display: inline-block; }
+details.year { border-top: 1px solid var(--line); margin-top: 28px; }
+details.year > summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; }
+details.year > summary::-webkit-details-marker { display: none; }
+details.year > summary .year-title { margin: 16px 0; }
+details.year > summary::after { content: "open"; font-size: 14px; padding: 6px 16px; border: 1px solid var(--line); border-radius: 999px; }
+details.year[open] > summary::after { content: "close"; background: var(--fg); color: var(--bg); }
+
+/* Photos */
+#photos { background: var(--ink); color: #eee; }
+#photos .section-sub { color: #9a9a9a; }
+.gallery { columns: 3 300px; column-gap: 16px; }
+.gallery figure { break-inside: avoid; margin: 0 0 22px; }
+.gallery img { width: 100%; height: auto; filter: grayscale(1); transition: filter .3s; }
+.gallery a:hover img { filter: none; }
+.gallery figcaption { padding: 8px 0 0; font-size: 14px; line-height: 1.4; }
+.gallery figcaption span { display: block; font-family: var(--serif); color: var(--accent); font-size: 15px; filter: brightness(1.4); }
+
+/* カード（インタビューなど） */
+.card { display: block; color: var(--fg); }
+.card h3 { font-weight: 400; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.05; margin: 4px 0 10px; }
+.card .meta:first-of-type, .card-img + .meta { font-family: var(--serif); color: var(--accent); font-size: 18px; }
+.card-img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; margin-bottom: 16px; filter: grayscale(1); }
+.vol-tabs, .vol-nav { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 28px; }
+.vol-tabs button, .vol-nav a { font: inherit; font-size: 14px; padding: 6px 16px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--fg); cursor: pointer; }
+.vol-tabs button:hover, .vol-nav a:hover, .vol-tabs button[aria-selected="true"], .vol-nav a[aria-current="page"] { background: var(--fg); color: var(--bg); }
 .card.feature[hidden] { display: none; }
-.card.feature { display: grid; gap: 20px; margin-top: 2px; align-items: start; padding: 20px; }
+.card.feature { display: grid; gap: 32px; align-items: start; }
 .card.feature img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; filter: grayscale(1); }
-.card.feature h3 { font-size: clamp(28px, 4vw, 40px); }
-@media (min-width: 760px) { .card.feature { grid-template-columns: 2fr 3fr; } }
+.card.feature h3 { font-family: var(--serif); font-size: clamp(48px, 6vw, 96px); line-height: .92; letter-spacing: -.02em; }
+.card.feature p:not(.meta) { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 32px); line-height: 1.2; }
+@media (min-width: 820px) { .card.feature { grid-template-columns: 5fr 7fr; gap: 48px; } }
 
 /* リリース */
-.release-cover { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: var(--panel); }
-.button { display: inline-block; padding: 9px 16px; background: var(--panel); color: var(--fg-strong); font-size: 13px; font-weight: 600; margin: 8px 8px 0 0; }
-.button:hover { background: var(--fg-strong); color: var(--bg); }
+.release-cover { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.button { margin: 10px 8px 0 0; }
 
 /* 記事ページ */
-.article { max-width: 720px; margin: 0 auto; }
-.article h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; margin: 0 0 8px; color: var(--fg-strong); font-weight: 600; letter-spacing: -.01em; }
-.article h2 { font-size: 14px; margin: 36px 0 6px; color: var(--fg-strong); font-weight: 600; }
-.article > p, .article .en p { font-size: 15px; }
-.poem { white-space: pre-line; color: var(--fg); font-size: 14px; background: var(--panel); padding: 16px 20px; }
-.profile { margin-top: 40px; padding: 20px; background: var(--panel); font-size: 14px; }
+.article { max-width: 860px; margin: 0 auto; }
+.article h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(56px, 9vw, 130px); line-height: .9; letter-spacing: -.02em; margin: 8px 0 18px; }
+.article h1 .en { display: block; font-family: var(--sans); font-size: .22em; letter-spacing: 0; margin-top: 12px; }
+.article > .meta:first-of-type, .article > .vol-nav + .meta { font-family: var(--serif); color: var(--accent); font-size: 19px; }
+.article h2 { font-family: var(--serif); font-weight: 400; font-size: 28px; margin: 44px 0 8px; }
+.article p { font-size: 17px; line-height: 1.75; }
+.article p b { font-size: 18px; }
+.poem { white-space: pre-line; font-family: var(--serif); font-size: 20px; line-height: 1.6; border-left: 1px solid var(--line); padding-left: 20px; }
+.profile { margin-top: 48px; padding: 28px; background: var(--soft); border-radius: 4px; }
 
-/* フッター */
-.site-footer { padding: 48px var(--gutter) 40px; color: var(--fg-dim); font-size: 13px; max-width: var(--max); margin: 0 auto; }
-.site-footer .links { display: flex; gap: 18px; margin-bottom: 10px; flex-wrap: wrap; font-weight: 600; color: var(--fg); }
+/* フッター：黒地に大きなロゴ */
+.site-footer { background: var(--ink); color: #ddd; padding: 64px var(--gutter) 40px; margin-top: 72px; overflow: hidden; }
+.site-footer::before { content: "Stone Age"; display: block; font-family: var(--black); font-size: clamp(80px, 19vw, 300px); line-height: .9; color: #f2f2f2; margin-bottom: 32px; white-space: nowrap; }
+.site-footer .links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.site-footer .links a { padding: 6px 16px; border: 1px solid #555; border-radius: 999px; }
+.site-footer .links a:hover { background: #f2f2f2; color: var(--ink); }
+.site-footer p { color: #888; font-size: 14px; margin: 0; }
