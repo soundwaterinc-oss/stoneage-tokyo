@@ -5,7 +5,7 @@ Stone Age Tokyo の公式サイト。HTML と CSS だけの静的サイト（ビ
 ## 構成
 
 - `index.html`：トップ（About／Event／Interview／Release／Contact）
-- `interview/index.html`：「路像」について
+- `interview/index.html`：Street chain について
 - `interview/dj-saboten.html`：インタビュー記事
 - `assets/style.css`：共通デザイン（色は `:root` で定義）
 - `assets/img/`：画像（トップ画像 `hero.jpg`、『時代』ジャケット `jidai.jpg` を置く）
