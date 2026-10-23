@@ -270,3 +270,12 @@ details.year .event-grid { margin-bottom: 24px; }
 
 /* 記事ページ：Q&A の区切り */
 .article h2 { border-top: 1px solid var(--soft); padding-top: 20px; }
+
+/* Street chain：全回のタブと、DJ 写真がない回の名前パネル */
+.sc-tabrow { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin: 0 0 6px; }
+.sc-tabrow .vol-tabs { margin: 0 0 10px; }
+.sc-tablabel { font-family: var(--serif); color: var(--accent); font-size: 18px; min-width: 9em; }
+.sc-name { display: flex; align-items: center; justify-content: center; padding: 24px; background: var(--ink); color: #f2f2f2; text-align: center; }
+.sc-name span { font-family: var(--serif); font-size: clamp(36px, 4.6vw, 72px); line-height: 1; letter-spacing: -.01em; }
+.sc-player { border: 0; margin: 0 0 16px; }
+.sc-vol { padding-bottom: 8px; }
