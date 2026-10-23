@@ -159,9 +159,30 @@ details.year[open] > summary::after { content: "close"; background: var(--fg); c
 .card.feature p:not(.meta) { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 32px); line-height: 1.2; }
 @media (min-width: 820px) { .card.feature { grid-template-columns: 5fr 7fr; gap: 48px; } }
 
-/* リリース */
+/* リリース：2作品を並べる */
 .release-cover { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .button { margin: 10px 8px 0 0; }
+.release-grid { display: grid; gap: 64px 48px; grid-template-columns: 1fr; }
+@media (min-width: 820px) { .release-grid { grid-template-columns: 1fr 1fr; } }
+.release { display: flex; flex-direction: column; }
+.release-art { display: block; background: var(--ink); margin-bottom: 18px; overflow: hidden; }
+.release-art img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; transition: transform .4s ease; }
+.release-art:hover img { transform: scale(1.02); }
+.release h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 5vw, 76px); line-height: .92; letter-spacing: -.02em; margin: 2px 0 10px; }
+.release h3 span { display: block; font-family: var(--sans); font-size: 17px; letter-spacing: 0; margin-top: 8px; color: var(--fg-dim); }
+.release-artist { font-size: 16px; margin: 0 0 14px; }
+.release > p:not(.kicker):not(.release-artist) { font-size: 16px; line-height: 1.7; margin: 0 0 18px; }
+.formats { list-style: none; padding: 0; margin: 0 0 20px; border-top: 1px solid var(--line); }
+.formats li { display: flex; flex-wrap: wrap; gap: 2px 16px; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--soft); font-size: 16px; }
+.formats li span:first-child { font-weight: 500; }
+.formats em { flex-basis: 100%; font-style: normal; font-size: 13px; color: var(--fg-dim); }
+.buy {
+  align-self: flex-start; display: inline-block; padding: 12px 26px; border-radius: 999px;
+  background: var(--accent); color: #fff; font-size: 16px; font-weight: 500; margin-bottom: 18px;
+  transition: background .15s;
+}
+.buy:hover { background: var(--fg); }
+.bc-player { border: 0; width: 100%; height: 42px; }
 
 /* 記事ページ */
 .article { max-width: 860px; margin: 0 auto; }
