@@ -89,6 +89,11 @@ main section { padding: 72px var(--gutter); border-bottom: 1px solid var(--line)
 .lineup li { margin: 2px 0; }
 .lineup b { display: inline-block; min-width: 90px; color: var(--fg-dim); font-weight: 400; }
 .next { border: 1px dashed var(--line); padding: 24px; color: var(--fg-dim); }
+.next-event { border: 1px solid var(--fg-dim); padding: 24px; background: var(--bg-2); }
+.next-event .date { color: var(--fg); font-weight: 700; }
+.timetable { margin-top: 16px; font-size: 14px; }
+.timetable summary { cursor: pointer; color: var(--fg-dim); letter-spacing: .08em; }
+.timetable .grid-2 { margin-top: 12px; gap: 16px; }
 
 .flyer { width: 100%; max-width: 360px; margin-top: 16px; border: 1px solid var(--line); }
 .video { position: relative; aspect-ratio: 16 / 9; margin: 8px 0; max-width: 720px; }
