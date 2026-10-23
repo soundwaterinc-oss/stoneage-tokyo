@@ -91,6 +91,13 @@ main section { padding: 72px var(--gutter); border-bottom: 1px solid var(--line)
 .next { border: 1px dashed var(--line); padding: 24px; color: var(--fg-dim); }
 .next-event { border: 1px solid var(--fg-dim); padding: 24px; background: var(--bg-2); }
 .next-event .date { color: var(--fg); font-weight: 700; }
+.year-title { font-family: var(--font-display); font-weight: 400; font-size: 32px; margin: 40px 0 0; display: inline-block; }
+details.year { border-top: 1px solid var(--line); margin-top: 24px; }
+details.year > summary { cursor: pointer; list-style: none; padding: 8px 0; }
+details.year > summary::-webkit-details-marker { display: none; }
+details.year > summary .year-title { margin-top: 8px; }
+details.year > summary::after { content: "＋ 開く"; margin-left: 16px; font-size: 13px; color: var(--fg-dim); letter-spacing: .1em; }
+details.year[open] > summary::after { content: "－ 閉じる"; }
 .timetable { margin-top: 16px; font-size: 14px; }
 .timetable summary { cursor: pointer; color: var(--fg-dim); letter-spacing: .08em; }
 .timetable .grid-2 { margin-top: 12px; gap: 16px; }
