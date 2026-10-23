@@ -93,6 +93,16 @@ main section { padding: 72px var(--gutter); border-bottom: 1px solid var(--line)
 .flyer { width: 100%; max-width: 360px; margin-top: 16px; border: 1px solid var(--line); }
 .video { position: relative; aspect-ratio: 16 / 9; margin: 8px 0; max-width: 720px; }
 .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vol-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+.vol-tabs button, .vol-nav a {
+  font: inherit; font-size: 13px; letter-spacing: .1em;
+  padding: 8px 16px; border: 1px solid var(--line); background: transparent; color: var(--fg-dim);
+  cursor: pointer; text-decoration: none;
+}
+.vol-tabs button:hover, .vol-nav a:hover { color: var(--fg); border-color: var(--fg-dim); }
+.vol-tabs button[aria-selected="true"], .vol-nav a[aria-current="page"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.vol-nav { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 24px; }
+.card.feature[hidden] { display: none; }
 .card.feature { display: grid; gap: 24px; margin-top: 24px; align-items: center; }
 .card.feature img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .card.feature h3 { font-size: 28px; }

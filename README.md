@@ -15,7 +15,11 @@ Stone Age Tokyo の公式サイト。HTML と CSS だけの静的サイト（ビ
 
 - **イベントを追加**：`index.html` の `<section id="event">` 内、Archive の先頭に `<article class="event">…</article>` を1つ足す（既存のものをコピーして書き換える）
 - **次回イベントの告知**：`Next Event` の `<div class="next">` の中身を書き換える
-- **インタビューを追加**：`interview/dj-saboten.html` をコピーして新しいファイル名にし、トップと `interview/index.html` にカードを足す
+- **インタビューを追加（vol.3 以降）**：
+  1. `interview/dj-saboten.html` をコピーして新しいファイル名にし、本文を書き換える
+  2. 全記事の `<nav class="vol-nav">` に新しい号のリンクを足す（自分の号には `aria-current="page"`）
+  3. `index.html` の `vol-tabs` にボタンを1つ、その下に `card feature`（`data-vol` を揃え、`hidden` を付ける）を1つ足す
+  4. `interview/index.html` の一覧にカードを足す
 - Claude Code に「○月○日のイベントを追加して」と頼めば、ここを書き換えて公開まで行える
 
 ## 公開

@@ -147,7 +147,13 @@
         <h2 class="section-title">Interview</h2>
         <p class="section-sub">Stone Age × 路像　StreetPhoto × DJ</p>
         <p>写真家・大西正の路上写真からDJ Mixを紡ぎ出していく「Streetphoto × DJ」のセッション。DJに一枚の写真を選んでもらい、そこから得た着想で DJ Mix を創ります。</p>
-        <a class="card feature" href="interview/kagari-mosquito.html" style="text-decoration:none">
+        <!-- 新しい号を足すとき：下の vol-tabs にボタンを1つ、その下に feature カードを1つ追加する（data-vol を揃える） -->
+        <div class="vol-tabs" role="tablist" aria-label="Interview の号を選ぶ">
+          <button type="button" role="tab" data-vol="1" aria-selected="true">vol.1</button>
+          <button type="button" role="tab" data-vol="2" aria-selected="false">vol.2</button>
+        </div>
+
+        <a class="card feature" data-vol="1" href="interview/kagari-mosquito.html" style="text-decoration:none">
           <img src="assets/img/kagari-mosquito.webp" alt="Kagari Mosquito" width="1326" height="1326" loading="lazy">
           <div>
             <p class="meta">vol.1　/　2024.12.27</p>
@@ -157,15 +163,20 @@
             <span class="more">Read More →</span>
           </div>
         </a>
-        <div class="grid-2" style="margin-top:32px">
-          <a class="card" href="interview/dj-saboten.html" style="text-decoration:none">
-            <img class="card-img" src="assets/img/dj-saboten.webp" alt="DJ SABOTEN" width="1656" height="1656" loading="lazy">
+
+        <a class="card feature" data-vol="2" href="interview/dj-saboten.html" style="text-decoration:none" hidden>
+          <img src="assets/img/dj-saboten.webp" alt="DJ SABOTEN" width="1656" height="1656" loading="lazy">
+          <div>
             <p class="meta">vol.2　/　2025.04.25</p>
             <h3>DJ SABOTEN</h3>
-            <p>Q.1 不特定多数が交錯する路上にあえて意識を向けると、自分もその不特定多数の群衆の一部となります。その中でどうありたいと思いますか？…</p>
+            <p class="meta">DJ（代官山 Music Bar Debris 店長）</p>
+            <p>「みんなが音に没入して安心して自由に楽しんでるフロア」</p>
             <span class="more">Read More →</span>
-          </a>
-          <a class="card" href="interview/" style="text-decoration:none">
+          </div>
+        </a>
+
+        <div style="margin-top:32px">
+          <a class="card" href="interview/" style="text-decoration:none;display:block">
             <img class="card-img" src="assets/img/rozou.webp" alt="路像：大西正の路上写真" width="1770" height="1182" loading="lazy">
             <p class="meta">About</p>
             <h3>「路像」について</h3>
@@ -188,7 +199,6 @@
             <p>東京、札幌、沖縄、松戸、横須賀、LA、マルセイユ、ベルリン、バンコクの5カ国9都市から、Stone Age Tokyo にゆかりのあるアーティストが参加。</p>
             <p class="meta">2020.10.25 release / 11 tracks</p>
             <a class="button" href="https://stoneagetokyo.bandcamp.com/album/stone-age-tokyo-1st-compilation" target="_blank" rel="noopener">Bandcamp</a>
-            <a class="button" href="https://diskunion.net/book/ct/detail/1008241899" target="_blank" rel="noopener">diskunion</a>
           </div>
         </div>
       </div>
@@ -213,5 +223,15 @@
     </div>
     <p>© Stone Age Tokyo</p>
   </footer>
+  <script>
+    // Interview の号を切り替える
+    document.querySelectorAll('.vol-tabs button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const vol = btn.dataset.vol;
+        document.querySelectorAll('.vol-tabs button').forEach((b) => b.setAttribute('aria-selected', b === btn));
+        document.querySelectorAll('.card.feature').forEach((c) => { c.hidden = c.dataset.vol !== vol; });
+      });
+    });
+  </script>
 </body>
 </html>
