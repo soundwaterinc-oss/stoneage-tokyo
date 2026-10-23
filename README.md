@@ -18,10 +18,7 @@ Stone Age Tokyo の公式サイト。HTML と CSS だけの静的サイト（ビ
 - **インタビューを追加**：`interview/dj-saboten.html` をコピーして新しいファイル名にし、トップと `interview/index.html` にカードを足す
 - Claude Code に「○月○日のイベントを追加して」と頼めば、ここを書き換えて公開まで行える
 
-## 公開（予定）
+## 公開
 
-- ホスティング：Cloudflare Pages または GitHub Pages（無料枠）
-- ドメイン：stoneage.tokyo（お名前.com、本人名義）。DNS を新しいホスティングに向ける
-- `@stoneage.tokyo` のメールは使っていない（MX レコードの心配なし）
-- 問い合わせ先：stone.age.since2018@gmail.com
-- 切り替えは花王財団の締切（2026-11-10）の後。新サイトの表示を確認してから DNS を切り替え、STUDIO 側の独自ドメイン設定は最後に外す
+- GitHub Pages（main ブランチのルートを公開）
+- 独自ドメイン：stoneage.tokyo
