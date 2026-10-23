@@ -226,3 +226,47 @@ details.year[open] > summary::after { content: "close"; background: var(--fg); c
 .site-footer .links a { font-family: var(--sans); padding: 6px 16px; border: 1px solid #555; border-radius: 999px; }
 .site-footer .links a:hover { background: #f2f2f2; color: var(--ink); }
 .site-footer p { color: #888; font-size: 14px; margin: 0; }
+
+/* ===== 区切り線と読みやすさの調整 =====
+   欄と欄、カードとカードの間に線を入れ、横並びの文章は縦に並べる */
+main > section + section { border-top: 1px solid var(--line); }
+#photos { border-top: 0; }
+
+/* About：日本語と英語を横並びにせず、縦に */
+#about .grid-2 { grid-template-columns: 1fr; max-width: 46em; gap: 20px; }
+#about .grid-2 > div + div { border-top: 1px solid var(--soft); padding-top: 20px; }
+
+/* イベント：カードごとに上線で区切る（複数列でも境目が分かるように縦線も） */
+.event-grid { gap: 0; border-top: 1px solid var(--line); }
+.event-grid > .event { padding: 20px 20px 32px; border-bottom: 1px solid var(--soft); }
+@media (min-width: 640px) {
+  .event-grid > .event { border-right: 1px solid var(--soft); }
+}
+.event-grid > .event.next-event { padding: 24px 0 36px; border-right: 0; border-bottom: 0; }
+.event.next-event .lineup { columns: auto; }
+#event > .wrap > h3 { padding-top: 8px; }
+details.year .event-grid { margin-bottom: 24px; }
+
+/* Street chain：写真と DJ の間に縦線、引用・プロフィールは縦に区切る */
+.sc-vol { border-top: 1px solid var(--line); padding-top: 20px; }
+@media (min-width: 760px) {
+  .sc-pair { grid-template-columns: 1fr 1fr; gap: 0; }
+  .sc-pair .sc-side:first-child { padding-right: 28px; border-right: 1px solid var(--soft); }
+  .sc-pair .sc-side:last-child { padding-left: 28px; }
+  .sc-x { display: none; }
+}
+.sc-quote { border-top: 1px solid var(--soft); padding-top: 18px; }
+.sc-profiles { grid-template-columns: 1fr !important; gap: 0; }
+.sc-profile + .sc-profile { border-top: 1px solid var(--line); padding-top: 20px; margin-top: 20px; }
+#interview .card { border-top: 1px solid var(--line); padding-top: 20px; }
+
+/* リリース：2作品の間に縦線 */
+.release-grid { border-top: 1px solid var(--line); padding-top: 28px; }
+@media (min-width: 820px) {
+  .release-grid { gap: 0; }
+  .release-grid > .release:first-child { padding-right: 40px; border-right: 1px solid var(--soft); }
+  .release-grid > .release:last-child { padding-left: 40px; }
+}
+
+/* 記事ページ：Q&A の区切り */
+.article h2 { border-top: 1px solid var(--soft); padding-top: 20px; }
