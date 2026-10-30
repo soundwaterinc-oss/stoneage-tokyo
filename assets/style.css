@@ -146,7 +146,7 @@ details.year[open] > summary::after { content: "close"; background: var(--fg); c
 .gallery img { width: 100%; height: auto; filter: grayscale(1); transition: filter .3s; }
 .gallery a:hover img { filter: none; }
 .gallery figcaption { padding: 8px 0 0; font-size: 14px; line-height: 1.4; }
-.gallery figcaption span { display: block; font-family: var(--serif); color: var(--accent); font-size: 15px; filter: brightness(1.4); }
+.gallery figcaption span, .photo-video figcaption span { display: block; font-family: var(--serif); color: var(--accent); font-size: 15px; filter: brightness(1.4); }
 
 /* カード（インタビューなど） */
 .card { display: block; color: var(--fg); }
